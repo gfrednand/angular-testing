@@ -6,8 +6,8 @@ import { inject, Injectable } from '@angular/core';
 })
 export class AppService {
   http = inject(HttpClient);
-  getPokemon() {
-    return this.http.get('https://pokeapi.co/api/v2/pokemon/ditto', {
+  getPokemon(url: string) {
+    return this.http.get(url, {
       responseType: 'json',
     });
   }

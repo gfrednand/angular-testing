@@ -1,13 +1,53 @@
 <main class="main">
   <div class="content">
     <div class="left-side">
-      <h1 >Hello, {{ title | uppercase | lowercase | fire }}</h1>
+      <h1>Hello, {{ title | uppercase | lowercase | fire }}</h1>
       <p>Congratulations! Your app is running. 🎉</p>
-      <h4  *appHasPermission="'admin'">Amount:::: {{ amount | number }}</h4>
+      <h4 *appHasPermission="'admin'">Amount:::: {{ amount | number }}</h4>
       <button (click)="getPokemon()">Get Data</button>
     </div>
-    {{ditto | json}}
   </div>
+  @if(loadingData()){
+  <div class="">
+    <h4>Loading...</h4>
+  </div>
+  }@else if(ditto) {
+  <div class="">
+    <h1>Data</h1>
+    <!-- {{ditto | json}} -->
+    <ol>
+      @for (item of ditto.abilities; track item) {
+      <li style="margin-top: 10px">
+        {{ item.ability.name }}
+        <a style="cursor: pointer" (click)="viewDetails(item)">View Details</a>
+        @if(loadingDetails()[item.ability.url]){
+        <span>Loading...</span>
+        }@else {
+        <h3>Pokemons</h3>
+        @for (item of dittoDetails[item.ability.url]?.pokemon; track item) {
+        <span style="cursor: pointer">{{ item.pokemon.name }}</span>,
+        }
+        <hr />
+        <h3>Effect Entries</h3>
+        @for (item of dittoDetails[item.ability.url]?.effect_entries; track
+        item) {
+        <h4>{{ item.short_effect }}</h4>
+        <p>{{ item.effect }}</p>
+        }
+        <hr />
+        <!-- <h3>Flavor Text Entries</h3>
+        @for (item of dittoDetails[item.ability.url]?.flavor_text_entries; track
+        item) {
+        <h4>{{ item.flavor_text }}</h4>
+        <p>{{ item.version_group.name }}</p>
+        } -->
+      }
+      </li>
+      }
+    </ol>
+  </div>
+
+  }
 </main>
 
 <router-outlet />
