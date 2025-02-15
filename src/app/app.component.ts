@@ -12,11 +12,10 @@ import { HasPermissionDirective } from './directives/has-permission.directive';
 import { FirePipe } from './pipes/fire.pipe';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, UpperCasePipe, LowerCasePipe, DecimalPipe, JsonPipe, HasPermissionDirective, FirePipe],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    imports: [RouterOutlet, UpperCasePipe, LowerCasePipe, DecimalPipe, JsonPipe, HasPermissionDirective, FirePipe],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'angular-testing';
