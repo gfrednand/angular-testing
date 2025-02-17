@@ -18,7 +18,6 @@ import { FirePipe } from './pipes/fire.pipe';
     UpperCasePipe,
     LowerCasePipe,
     DecimalPipe,
-    JsonPipe,
     HasPermissionDirective,
     FirePipe,
   ],
